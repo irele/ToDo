@@ -15,10 +15,11 @@ namespace ToDo.Models
         public bool Status {get; set; }
         public string Details { get; set; }
         public DateTime DueDate { get; set; }
-
-        //foreign key for category
+        public string CategoryName { get; set; }
+        [ForeignKey("CategoryInfo")]
+        [Required]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category CategoryInfo { get; set; }
 
     }
 }

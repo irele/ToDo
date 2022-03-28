@@ -27,8 +27,8 @@ namespace ToDo.Data
 
             var task = new Task[]
             {
-                new Task { Name ="call mom", CategoryId = 2, Details ="talk about by a new car", Status =false , DueDate = date},
-                new Task { Name ="meet with james", CategoryId = 1, Details ="find a fix for the bug", Status =false , DueDate = date}
+                new Task { Name ="call mom", CategoryId = 2, Details ="talk about by a new car", CategoryName ="Family", Status =false , DueDate = date},
+                new Task { Name ="meet with james", CategoryId = 1, Details ="find a fix for the bug", Status =false, CategoryName ="Work", DueDate = date}
             };
 
             foreach(Category c in catgory)
