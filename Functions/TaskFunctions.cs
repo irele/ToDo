@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using ToDo.Data;
 using ToDo.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ToDo.Functions
 {
     public class TaskFunctions
     {
         private readonly CrudContext _context;
-        static List<Task> tks;
+
 
         public TaskFunctions(CrudContext crudContext)
         {
@@ -25,6 +26,11 @@ namespace ToDo.Functions
             //tks = _context.Tasks.ToList();
             //tks.
             return _context.Tasks.ToList(); 
+        }
+
+        internal Task details(int? id)
+        {
+            return _context.Tasks.SingleOrDefault(x => x.ID == id);
         }
     }
 }
