@@ -10,6 +10,6 @@ namespace ToDo.Models
         public int Id { get; set; }
         public string CategoryName { get; set; }
 
-        public ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

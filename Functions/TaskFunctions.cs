@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ToDo.Data;
 using ToDo.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ToDo.Functions
@@ -19,18 +20,24 @@ namespace ToDo.Functions
 
         public List<Task> tasks()
         {
-            //foreach (Task t in _context.Tasks.ToList())
-            //{
-                
-            //}
-            //tks = _context.Tasks.ToList();
-            //tks.
             return _context.Tasks.ToList(); 
         }
 
-        internal Task details(int? id)
+        public Task getDetails(int? id)
         {
             return _context.Tasks.SingleOrDefault(x => x.ID == id);
+        }
+
+        public SelectList getCategories()
+        {
+            return new SelectList(_context.Categories.ToList(), "CategoryName", "CategoryName");
+        }
+
+        internal void editTask(int? id, Task task)
+        {
+            _context.Update(task);
+            _context.SaveChanges();
+
         }
     }
 }
