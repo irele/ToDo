@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ToDo.Data;
 using ToDo.Functions;
+using ToDo.Models;
 
 namespace ToDo.Controllers
 {
@@ -27,6 +28,36 @@ namespace ToDo.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category category )
+        {
+            categoryFunctions.create(category);
+
+            TempData["Message"] = "Category Created";
+            return RedirectToAction("Index");
+
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+           //var delCat = CategoryFunctions.delete(id);
+
+           // if (delCat == false)
+           // {
+           //     return NotFound();
+           // }
+
+            TempData["message"] = "Category deleted";
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

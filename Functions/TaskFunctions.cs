@@ -36,6 +36,7 @@ namespace ToDo.Functions
         internal void editTask(int? id, Task task)
         {
             var categories = _context.Categories.ToList();
+
             for (int i = 0; i < categories.Count; i++)
             {
                 if (categories[i].CategoryName == task.CategoryName)
@@ -63,6 +64,20 @@ namespace ToDo.Functions
             _context.Add(task);
             _context.SaveChanges();
 
+        }
+
+        internal bool delete(int? id)
+        {
+            Task  tasks = _context.Tasks.SingleOrDefault(x => x.ID == id);
+
+            if (tasks == null)
+            {
+                return false;
+            }
+            _context.Remove(tasks);
+            _context.SaveChanges();
+
+            return true;
         }
     }
 }

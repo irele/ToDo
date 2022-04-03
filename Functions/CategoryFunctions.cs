@@ -25,5 +25,19 @@ namespace ToDo.Functions
         {
             return _context.Categories.ToList();
         }
+
+        internal bool delete(int? id)
+        {
+            //Category cat = _context.Categories.SingleOrDefault(x => x.Id == id);
+
+            //if (cat == null)
+            //{
+            //    return false;
+            //}
+            //_context.Remove(cat);
+            //_context.SaveChanges();
+
+            return true;
+        }
     }
 }

@@ -50,6 +50,7 @@ namespace ToDo.Controllers
                 return NotFound();
             }
 
+            ViewData["CategoryName"] = CatgoriesList;
             var tks = taskFunctions.getDetails(id);
             
 
@@ -93,7 +94,25 @@ namespace ToDo.Controllers
             TempData["Message"] = "Task  Created";
             return RedirectToAction("Index");
         }
-        
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var delTks = taskFunctions.delete(id);
+
+            if (delTks == false)
+            {
+                return NotFound();
+            }
+            
+            TempData["message"] = "Task deleted";
+            return RedirectToAction("Index");
+        }
+
 
 
 
