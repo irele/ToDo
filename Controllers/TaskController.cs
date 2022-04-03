@@ -19,6 +19,7 @@ namespace ToDo.Controllers
         {
             taskFunctions = new TaskFunctions(context);
             CatgoriesList = taskFunctions.getCategories();
+            ViewData["CategoryName"] = CatgoriesList;
         }
 
         public IActionResult Index()
@@ -50,7 +51,7 @@ namespace ToDo.Controllers
             }
 
             var tks = taskFunctions.getDetails(id);
-            ViewData["CategoryName"] = CatgoriesList;
+            
 
             if (tks == null)
             {
@@ -70,12 +71,29 @@ namespace ToDo.Controllers
             }
             taskFunctions.editTask(id, task);
 
-            TempData["Message"] = "Person Edited";
+            TempData["Message"] = "Task Edited";
             return RedirectToAction("Index");
 
             
         }
 
+
+        public IActionResult Create()
+        {
+            ViewData["CategoryName"] = CatgoriesList;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Task task)
+        {
+            taskFunctions.createTask(task);
+            
+            TempData["Message"] = "Task  Created";
+            return RedirectToAction("Index");
+        }
+        
 
 
 

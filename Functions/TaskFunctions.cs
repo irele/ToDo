@@ -35,7 +35,32 @@ namespace ToDo.Functions
 
         internal void editTask(int? id, Task task)
         {
+            var categories = _context.Categories.ToList();
+            for (int i = 0; i < categories.Count; i++)
+            {
+                if (categories[i].CategoryName == task.CategoryName)
+                {
+                    task.CategoryId = categories[i].Id;
+                    break;
+                }
+            }
             _context.Update(task);
+            _context.SaveChanges();
+
+        }
+
+        internal void createTask(Task task)
+        {
+            var categories = _context.Categories.ToList();
+           for(int i = 0; i < categories.Count; i++)
+            {
+                if(categories[i].CategoryName == task.CategoryName)
+                {
+                    task.CategoryId = categories[i].Id;
+                    break;
+                }
+            }
+            _context.Add(task);
             _context.SaveChanges();
 
         }
